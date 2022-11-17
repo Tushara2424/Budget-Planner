@@ -1,6 +1,5 @@
 import React from 'react';
 import './About.css';
-import menuOptions from '../components/menu-button-of-three-horizontal-lines.png';
 import budgetAppLogo from '../components/budget planner-logos_transparent.png';
 
 function About() {

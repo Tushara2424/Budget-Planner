@@ -4,7 +4,8 @@ import './App.css';
 import About from "./pages/About";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
-import ExpensesLimit from "./pages/ExpensesLimit";
+import Limits from "./pages/Limits";
+import Expenses from "./pages/Expenses";
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
             <Route path="/about" element={<About/>}></Route>
             <Route path="/login" element={<Login/>}></Route>
             <Route path="/dashboard" element={<Dashboard/>}></Route>
-            <Route path="/limit" element={<ExpensesLimit/>}></Route>
+            <Route path="/limits" element={<Limits/>}></Route>
+            <Route path="/expenses" element={<Expenses/>}></Route>
         </Routes>
       </Router>
   );

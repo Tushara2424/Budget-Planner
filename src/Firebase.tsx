@@ -19,10 +19,8 @@ const provider = new GoogleAuthProvider();
 export const signInWithGoogle = () => {
     signInWithPopup(auth, provider).then((result) => {
         console.log(result);
-        window.location.href = "/dashboard";
-        return true;
+        // window.location.href = "/dashboard";
     }).catch((error) => {
         console.log(error);
-        return false;
     })
 };

@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getDatabase } from "firebase/database";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -19,8 +20,9 @@ const provider = new GoogleAuthProvider();
 export const signInWithGoogle = () => {
     signInWithPopup(auth, provider).then((result) => {
         console.log(result);
-        // window.location.href = "/dashboard";
     }).catch((error) => {
         console.log(error);
     })
 };
+
+export const db = getDatabase();

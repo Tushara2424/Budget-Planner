@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Limits from "./pages/Limits";
 import Expenses from "./pages/Expenses";
+import Reports from "./pages/Reports";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path="/login" element={<Login/>}></Route>
             <Route path="/dashboard" element={<Dashboard/>}></Route>
             <Route path="/limits" element={<Limits/>}></Route>
+            <Route path="/reports" element={<Reports/>}></Route>
             <Route path="/expenses" element={<Expenses/>}></Route>
         </Routes>
       </Router>

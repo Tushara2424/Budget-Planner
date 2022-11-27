@@ -27,12 +27,12 @@ function Login() {
 
             <div id="card">
                 <div id="card-content">
-                    <div id="card-title">
-                        <h2>Budget Planner</h2>
+                    <h1 className="center-align">Login Options</h1>
+                    <div className="center-align">
+                        <button type="button" onClick={signInWithGoogle} className="login-with-google-btn">
+                            Sign in with Google
+                        </button>
                     </div>
-                    <button id="submit-btn" onClick={signInWithGoogle}>
-                        SIGN IN WITH GOOGLE
-                    </button>
                 </div>
             </div>
         </>

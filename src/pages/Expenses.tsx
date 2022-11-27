@@ -33,16 +33,15 @@ function Expenses() {
                 if (snapshot.exists() && snapshot.val()) {
                     categoryAmt += Number(snapshot.val());
                 }
-                console.log(categoryAmt);
                 set(categoriesRef, categoryAmt)
-                    .then(() => console.log("added category amt"))
-                    .catch(() => console.log("error in category amt"));
+                    .then(() => alert("Expense added successfully"))
+                    .catch(() => alert("Error in submitting"));
             })
-            .catch(() => console.log("error in category amount"));
+            .catch(() => console.log("Error in submitting"));
 
         set(expensesRef, value)
             .then(() => console.log("data added to db"))
-            .catch(() => console.log("error while adding to db"));
+            .catch(() => alert("Error in submitting"));
     };
 
     const logout = async () => {
@@ -57,11 +56,12 @@ function Expenses() {
                 <li className="li-right"><a className="li-anchor" href="/about">ABOUT</a></li>
             </ul>
 
-            <h1>ADD EXPENSES</h1>
+            <h1 className="heading">ADD EXPENSES</h1>
+            <br/>
+            <br/>
 
             <form onSubmit={handleSubmit}>
                 <p>Please select expense details to add: </p>
-                <br/>
                 <br/>
                 <p>Select Category</p>
                 <select value={category} onChange={event => setCategory(event.target.value)}>

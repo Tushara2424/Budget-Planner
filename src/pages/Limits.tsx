@@ -41,11 +41,12 @@ function Limits() {
                 <li className="li-right"><a className="li-anchor" href="/about">ABOUT</a></li>
             </ul>
 
-            <h1>SET LIMITS</h1>
+            <h1 className="heading">SET LIMITS</h1>
+            <br/>
+            <br/>
 
             <form onSubmit={handleSubmit}>
                 <p>Please set monthly expense limit category wise: </p>
-                <br/>
                 <br/>
                 <p>Select Category</p>
                 <select value={category} onChange={event => setCategory(event.target.value)}>

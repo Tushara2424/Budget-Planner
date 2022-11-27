@@ -1,7 +1,7 @@
 import budgetAppLogo from "../components/budget planner-logos_transparent.png";
 import React, {useEffect, useState} from "react";
 import {signOut} from "firebase/auth";
-import {auth, db} from "../Firebase";
+import {auth} from "../Firebase";
 import {
     ArcElement,
     CategoryScale,
@@ -13,66 +13,15 @@ import {
     Title,
     Tooltip
 } from "chart.js";
-import {Pie} from "react-chartjs-2";
 import {useAuthState} from "react-firebase-hooks/auth";
 import {onValue, ref} from "firebase/database";
 import '../pages/Reports.css';
 import CategoryPieChart from "./reports/CategoryPieChart";
 import CategoryLineChart from "./reports/CategoryLineChart";
 import CategoryBarChart from "./reports/CategoryBarChart";
+import DateWiseLineChart from "./reports/DateWiseLineChart";
 
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, PointElement, LineElement, Title);
-
-export const options = {
-    responsive: true,
-    plugins: {
-        legend: {
-            position: 'top' as const,
-        }
-    },
-};
-
-export const data = {
-    labels: [""],
-    datasets: [
-        {
-            label: 'Dataset 1',
-            data: [],
-            borderColor: 'rgb(53, 162, 235)',
-            backgroundColor: 'rgba(53, 162, 235, 0.5)',
-        },
-    ],
-};
-
-export const reportData = {
-    labels: [""],
-    datasets: [
-        {
-            label: 'Amount Spent',
-            data: [0],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)',
-            ],
-            borderWidth: 2,
-        },
-    ],
-    options: {
-        maintainAspectRatio: false,
-    }
-};
 
 function Reports() {
     const logout = async () => {
@@ -132,10 +81,11 @@ function Reports() {
                 <li className="li-right"><a className="li-anchor" href="/about">ABOUT</a></li>
             </ul>
 
-            <h1 id="pie">VIEW REPORT</h1>
+            <h1 className="heading">VIEW REPORT</h1>
+            <br/>
+            <br/>
 
             <form onSubmit={handleSubmit}>
-                <br/>
                 <br/>
                 <p>Start Date</p>
                 <input type="date" name="date_picker" value={startDate} onChange={event => setStartDate(event.target.value)} required />
@@ -144,10 +94,11 @@ function Reports() {
                 <input type="date" name="date_picker" value={endDate} onChange={event => setEndDate(event.target.value)} required />
                 <br/>
                 <p>Report Type</p>
-                <select value={reportType} onChange={event => setReportType(event.target.value)} >
+                <select className="report-select" value={reportType} onChange={event => setReportType(event.target.value)} >
                     <option value="pie-chart">Category Wise Pie Chart</option>
                     <option value="line-chart">Category Wise Line Chart</option>
                     <option value="bar-chart">Category Wise Bar Chart</option>
+                    <option value="date-line-chart">Date Wise Line Chart</option>
                 </select>
 
                 <button type="submit">Submit</button>
@@ -157,6 +108,7 @@ function Reports() {
                 {submitValue ? (<CategoryPieChart data={finalRepData} />) : (<></>)}
                 {submitValue ? (<CategoryLineChart data={finalRepData} />) : (<></>)}
                 {submitValue ? (<CategoryBarChart data={finalRepData} />) : (<></>)}
+                {submitValue ? (<DateWiseLineChart data={finalRepData} />) : (<></>)}
                 {/*<CategoryPieChart data={finalRepData} />*/}
                 {/*{!isCategoryPieChart ? (<></>) : (<CategoryPieChart data={pieData}/>)}*/}
             </div>

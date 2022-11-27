@@ -3,6 +3,14 @@ form {
     margin: 0 auto;
 }
 
+form p {
+    font-family: "Trebuchet MS";
+}
+
+button {
+    font-family: "Trebuchet MS";
+}
+
 input {
     display: block;
     box-sizing: border-box;
@@ -12,6 +20,12 @@ input {
     padding: 10px 15px;
     margin-bottom: 10px;
     font-size: 14px;
+    font-family: "Trebuchet MS";
+}
+
+.heading {
+    text-align: center;
+    font-family: "Trebuchet MS";
 }
 
 select {
@@ -23,6 +37,10 @@ select {
     padding: 10px 15px;
     margin-bottom: 10px;
     font-size: 14px;
+}
+
+select option {
+    font-family: "Trebuchet MS";
 }
 
 button[type="submit"]:hover {

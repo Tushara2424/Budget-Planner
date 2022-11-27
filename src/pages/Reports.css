@@ -21,6 +21,10 @@
     width: 75%;
 }
 
+.report-select option {
+    font-family: "Trebuchet MS";
+}
+
 /* Float four columns side by side */
 .reports-column {
     float: left;

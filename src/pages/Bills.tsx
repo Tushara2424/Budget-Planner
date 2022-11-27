@@ -12,25 +12,14 @@ function Bills() {
     const [user] = useAuthState(auth);
     const [amount, setAmount] = useState('');
     const [category, setCategory] = useState('other');
+    const [description, setDescription] = useState('');
     const userId = user?.uid;
     const limitsRef = ref(db, `users/${userId}/limits`);
 
     const handleSubmit = (event: any) => {
         event.preventDefault();
         setAmount('');
-        let currentLimit = {};
-        get(limitsRef)
-            .then((snapshot) => {
-                if (snapshot.exists()) {
-                    currentLimit = snapshot.val();
-                }
-                // @ts-ignore
-                currentLimit[category] = amount;
-                set(limitsRef, currentLimit)
-                    .then(() => console.log("data added to db"))
-                    .catch(() => console.log("error while adding to db"));
-            })
-            .catch(() => console.log("error while reading from db"));
+        // todo@pranit
     };
     return (
         <>
@@ -41,19 +30,20 @@ function Bills() {
                 <li className="li-right"><a className="li-anchor" href="/about">ABOUT</a></li>
             </ul>
 
-            <h1>ADD BILLS</h1>
+            <h1 className="heading">ADD BILLS</h1>
+            <br/>
+            <br/>
 
             <form onSubmit={handleSubmit}>
                 <p>Please add monthly bills to pay: </p>
-                <br/>
                 <br/>
                 <p>Bill Description</p>
                 <input
                     id="description"
                     name="description"
                     type="text"
-                    value={amount}
-                    onChange={event => setAmount(event.target.value)}
+                    value={description}
+                    onChange={event => setDescription(event.target.value)}
                     required
                 />
                 <br/>

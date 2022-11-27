@@ -25,14 +25,13 @@ function Dashboard() {
             </ul>
             <div className="header">
                 <p>Welcome to the dashboard, <b>{user?.displayName}</b></p>
-                {/*create card UI to show different options - add expenses, limit, bills, etc*/}
             </div>
 
             <br/>
             <br/>
 
             <div className="row">
-                <div className="column">
+                <div className="dashboard-column">
                     <div className="card">
                         <a href="/expenses">
                             <img src={addExpensesLogo} alt="Avatar" width="100%"/>
@@ -41,7 +40,7 @@ function Dashboard() {
                     </div>
                 </div>
 
-                <div className="column">
+                <div className="dashboard-column">
                     <div className="card">
                         <a href="/limits">
                             <img src={setLimitLogo} alt="Avatar" width="100%"/>
@@ -50,7 +49,7 @@ function Dashboard() {
                     </div>
                 </div>
 
-                <div className="column">
+                <div className="dashboard-column">
                     <div className="card">
                         <a href="/reports">
                             <img src={viewReportLogo} alt="Avatar" width="100%"/>
@@ -59,7 +58,7 @@ function Dashboard() {
                     </div>
                 </div>
 
-                <div className="column">
+                <div className="dashboard-column">
                     <div className="card">
                         <a href="/bills">
                             <img src={addBillsLogo} alt="Avatar" width="100%"/>

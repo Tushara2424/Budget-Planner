@@ -6,10 +6,21 @@
     margin: 20px 50px;
 }
 
+.pie-div {
+    height: 400px;
+    margin: auto;
+    width: 50%;
+}
+
+.center-div {
+    margin: auto;
+    width: 75%;
+}
+
 /* Float four columns side by side */
-.dashboard-column {
+.reports-column {
     float: left;
-    width: 25%;
+    width: 100%;
     padding: 20px 20px;
 }
 
@@ -25,7 +36,7 @@
 
 /* Responsive columns */
 @media screen and (max-width: 600px) {
-    .dashboard-column {
+    .reports-column {
         width: 100%;
         display: block;
         margin-bottom: 20px;
@@ -41,5 +52,5 @@
 }
 
 .card:hover {
-    box-shadow: 0 8px 16px 2px rgb(2, 0, 0);
+    box-shadow: 0 8px 16px 2px rgb(0, 0, 0);
 }

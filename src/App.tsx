@@ -7,6 +7,7 @@ import Dashboard from "./pages/Dashboard";
 import Limits from "./pages/Limits";
 import Expenses from "./pages/Expenses";
 import Reports from "./pages/Reports";
+import Bills from "./pages/Bills";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path="/limits" element={<Limits/>}></Route>
             <Route path="/reports" element={<Reports/>}></Route>
             <Route path="/expenses" element={<Expenses/>}></Route>
+            <Route path="/bills" element={<Bills/>}></Route>
         </Routes>
       </Router>
   );

@@ -5,7 +5,7 @@ import {signOut} from "firebase/auth";
 import {useAuthState} from "react-firebase-hooks/auth";
 import {ref, get, set} from "firebase/database";
 
-function Limits() {
+function Bills() {
     const logout = async () => {
         await signOut(auth);
     }
@@ -41,28 +41,23 @@ function Limits() {
                 <li className="li-right"><a className="li-anchor" href="/about">ABOUT</a></li>
             </ul>
 
-            <h1>SET LIMITS</h1>
+            <h1>ADD BILLS</h1>
 
             <form onSubmit={handleSubmit}>
-                <p>Please set monthly expense limit category wise: </p>
+                <p>Please add monthly bills to pay: </p>
                 <br/>
                 <br/>
-                <p>Select Category</p>
-                <select value={category} onChange={event => setCategory(event.target.value)}>
-                    <option value="other">Other</option>
-                    <option value="grocery">Food</option>
-                    <option value="housing">Housing</option>
-                    <option value="utilities">Utilities</option>
-                    <option value="clothing">Clothing</option>
-                    <option value="medical">Medical</option>
-                    <option value="transportation">Transportation</option>
-                    <option value="household_items">Household Items</option>
-                    <option value="personal">Personal</option>
-                    <option value="education">Education</option>
-                    <option value="entertainment">Entertainment</option>
-                </select>
+                <p>Bill Description</p>
+                <input
+                    id="description"
+                    name="description"
+                    type="text"
+                    value={amount}
+                    onChange={event => setAmount(event.target.value)}
+                    required
+                />
                 <br/>
-                <p>Amount in USD</p>
+                <p>Bill Amount in USD</p>
                 <input
                     id="amount"
                     name="amount"
@@ -77,4 +72,4 @@ function Limits() {
     );
 }
 
-export default Limits
+export default Bills

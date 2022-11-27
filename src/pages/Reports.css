@@ -1,0 +1,60 @@
+/*.pie-chart {*/
+/*    padding: 20px 20px 20px 20px;*/
+/*}*/
+
+* {
+    box-sizing: border-box;
+}
+
+.header {
+    margin: 20px 50px;
+}
+
+.pie-div {
+    height: 400px;
+    margin: auto;
+    width: 50%;
+}
+
+.center-div {
+    margin: auto;
+    width: 75%;
+}
+
+/* Float four columns side by side */
+.reports-column {
+    float: left;
+    width: 100%;
+    padding: 20px 20px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {margin: 15px 20px;}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+    .reports-column {
+        width: 100%;
+        display: block;
+        margin-bottom: 20px;
+    }
+}
+
+/* Style the counter cards */
+.card {
+    padding: 10px;
+    text-align: center;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 2px rgb(0, 0, 0);
+}

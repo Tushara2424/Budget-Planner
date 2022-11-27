@@ -20,6 +20,7 @@ import CategoryPieChart from "./reports/CategoryPieChart";
 import CategoryLineChart from "./reports/CategoryLineChart";
 import CategoryBarChart from "./reports/CategoryBarChart";
 import DateWiseLineChart from "./reports/DateWiseLineChart";
+import StickyHeadTable from "./reports/Table";
 
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, PointElement, LineElement, Title);
 
@@ -99,6 +100,7 @@ function Reports() {
                     <option value="line-chart">Category Wise Line Chart</option>
                     <option value="bar-chart">Category Wise Bar Chart</option>
                     <option value="date-line-chart">Date Wise Line Chart</option>
+                    <option value="expenses-table">Expenses Table</option>
                 </select>
 
                 <button type="submit">Submit</button>
@@ -109,6 +111,7 @@ function Reports() {
                 {submitValue ? (<CategoryLineChart data={finalRepData} />) : (<></>)}
                 {submitValue ? (<CategoryBarChart data={finalRepData} />) : (<></>)}
                 {submitValue ? (<DateWiseLineChart data={finalRepData} />) : (<></>)}
+                {submitValue ? (<StickyHeadTable data={finalRepData} />) : (<></>)}
                 {/*<CategoryPieChart data={finalRepData} />*/}
                 {/*{!isCategoryPieChart ? (<></>) : (<CategoryPieChart data={pieData}/>)}*/}
             </div>

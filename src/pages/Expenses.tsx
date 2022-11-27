@@ -33,6 +33,7 @@ function Expenses() {
                 if (snapshot.exists() && snapshot.val()) {
                     categoryAmt += Number(snapshot.val());
                 }
+                console.log(categoryAmt);
                 set(categoriesRef, categoryAmt)
                     .then(() => console.log("added category amt"))
                     .catch(() => console.log("error in category amt"));

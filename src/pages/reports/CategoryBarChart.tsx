@@ -8,16 +8,17 @@ import {
     CategoryScale,
     LinearScale,
     PointElement,
+    BarElement,
     LineElement, Title
 } from "chart.js";
-import { Pie } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 import {useAuthState} from "react-firebase-hooks/auth";
 import {ref, onValue, push} from "firebase/database";
-import "./CategoryPieChart.css";
+import "./CategoryBarChart.css";
 
-ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, PointElement, LineElement, Title);
+ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title);
 
-export const pieChartData = {
+export const barChartData = {
     labels: [""],
     datasets: [
         {
@@ -44,6 +45,11 @@ export const pieChartData = {
     ],
     options: {
         maintainAspectRatio: false,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
     }
 };
 
@@ -52,9 +58,10 @@ function capitalizeFirstLetter(str: string) {
     return str.replace(/_/g, ' ');
 }
 
-function CategoryPieChart(props: any) {
+function CategoryBarChart(props: any) {
+    console.log("okok");
     const [user, loading] = useAuthState(auth);
-    const [repData, setRepData] = useState(pieChartData);
+    const [repData, setRepData] = useState(barChartData);
     const [repDataReady, setRepDataReady] = useState(false);
     let userId:any;
 
@@ -66,7 +73,7 @@ function CategoryPieChart(props: any) {
         const expensesRef = ref(db, `users/${userId}/expenses`);
         onValue(expensesRef, (snapshot) => {
             let categoryWiseData: any = {};
-            let tempData = pieChartData;
+            let tempData = barChartData;
             let labels = [];
             let datasets = [];
             const expensesRow = snapshot.val();
@@ -95,7 +102,7 @@ function CategoryPieChart(props: any) {
         });
     }, [loading, props]);
 
-    if (props.data.reportType != "pie-chart") {
+    if (props.data.reportType != "bar-chart") {
         return (<></>);
     }
 
@@ -105,10 +112,10 @@ function CategoryPieChart(props: any) {
                 <div className="row">
                     <div className="reports-column">
                         <div className="card">
-                            <div className="pie-div">
-                                {!repDataReady ? (<></>) : (<Pie className="pie-chart" data={repData} redraw />)}
+                            <div className="bar-div">
+                                {!repDataReady ? (<></>) : (<Bar className="bar-chart" data={repData} redraw />)}
                             </div>
-                            <p>Pie Chart: Category Wise Spend</p>
+                            <p>Bar Chart: Category Wise Spend</p>
                         </div>
                     </div>
                 </div>
@@ -117,4 +124,4 @@ function CategoryPieChart(props: any) {
     );
 }
 
-export default CategoryPieChart
+export default CategoryBarChart

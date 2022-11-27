@@ -18,6 +18,8 @@ import {useAuthState} from "react-firebase-hooks/auth";
 import {onValue, ref} from "firebase/database";
 import '../pages/Reports.css';
 import CategoryPieChart from "./reports/CategoryPieChart";
+import CategoryLineChart from "./reports/CategoryLineChart";
+import CategoryBarChart from "./reports/CategoryBarChart";
 
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, PointElement, LineElement, Title);
 
@@ -83,29 +85,30 @@ function Reports() {
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
     const [reportType, setReportType] = useState('pie-chart');
-    const [pieData, setPieData] = useState({});
-    let userId:any;
+    const [finalRepData, setFinalRepData] = useState({});
+    const [submitValue, setSubmitValue] = useState(false);
+    // let userId:any;
 
     useEffect(() => {
         if (loading) {
             return;
         }
-        userId = user?.uid;
-        const categoriesRef = ref(db, `users/${userId}/categories`);
-        onValue(categoriesRef, (snapshot) => {
-            let newData = reportData;
-            let labels = [];
-            let datasets = [];
-            const catData = snapshot.val();
-            for (const key in catData) {
-                labels.push(key);
-                datasets.push(catData[key]);
-            }
-            newData.labels = labels;
-            newData.datasets[0].data = datasets;
+        // userId = user?.uid;
+        // const categoriesRef = ref(db, `users/${userId}/categories`);
+        // onValue(categoriesRef, (snapshot) => {
+            // let newData = reportData;
+            // let labels = [];
+            // let datasets = [];
+            // const catData = snapshot.val();
+            // for (const key in catData) {
+                // labels.push(key);
+                // datasets.push(catData[key]);
+            // }
+            // newData.labels = labels;
+            // newData.datasets[0].data = datasets;
             // setRepData(newData);
             // setRepDataReady(true);
-        });
+        // });
     }, [loading]);
 
     const handleSubmit = (event: any) => {
@@ -115,7 +118,8 @@ function Reports() {
             "endDate": endDate,
             "reportType": reportType,
         };
-        setPieData(data);
+        setFinalRepData(data);
+        setSubmitValue(true);
     }
 
 
@@ -143,28 +147,19 @@ function Reports() {
                 <select value={reportType} onChange={event => setReportType(event.target.value)} >
                     <option value="pie-chart">Category Wise Pie Chart</option>
                     <option value="line-chart">Category Wise Line Chart</option>
+                    <option value="bar-chart">Category Wise Bar Chart</option>
                 </select>
 
                 <button type="submit">Submit</button>
             </form>
 
             <div>
-                <CategoryPieChart data={pieData} />
+                {submitValue ? (<CategoryPieChart data={finalRepData} />) : (<></>)}
+                {submitValue ? (<CategoryLineChart data={finalRepData} />) : (<></>)}
+                {submitValue ? (<CategoryBarChart data={finalRepData} />) : (<></>)}
+                {/*<CategoryPieChart data={finalRepData} />*/}
                 {/*{!isCategoryPieChart ? (<></>) : (<CategoryPieChart data={pieData}/>)}*/}
             </div>
-
-            {/*<div className="center-div">*/}
-            {/*    <div className="row">*/}
-            {/*        <div className="reports-column">*/}
-            {/*            <div className="card">*/}
-            {/*                <div className="pie-div">*/}
-            {/*                    {!repDataReady ? (<></>) : (<Pie className="pie-chart" data={repData}/>)}*/}
-            {/*                </div>*/}
-            {/*                <p>Pie Chart: Category Wise Spend</p>*/}
-            {/*            </div>*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
         </>
     );
 }

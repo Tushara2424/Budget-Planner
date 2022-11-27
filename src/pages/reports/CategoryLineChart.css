@@ -1,4 +1,4 @@
-.pie-div {
+.line-div {
     padding: 10px;
 }
 
@@ -10,10 +10,8 @@
     margin: 20px 50px;
 }
 
-.pie-div {
-    height: 400px;
+.line-div {
     margin: auto;
-    width: 50%;
 }
 
 .center-div {

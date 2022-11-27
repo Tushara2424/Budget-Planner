@@ -10,27 +10,19 @@ import {
     PointElement,
     LineElement, Title
 } from "chart.js";
-import { Pie } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 import {useAuthState} from "react-firebase-hooks/auth";
-import {ref, onValue, push} from "firebase/database";
-import "./CategoryPieChart.css";
+import {ref, onValue} from "firebase/database";
+import "./CategoryLineChart.css";
 
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, PointElement, LineElement, Title);
 
-export const pieChartData = {
+export const lineChartData = {
     labels: [""],
     datasets: [
         {
             label: 'Amount Spent',
             data: [0],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-            ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
                 'rgba(54, 162, 235, 1)',
@@ -40,6 +32,7 @@ export const pieChartData = {
                 'rgba(255, 159, 64, 1)',
             ],
             borderWidth: 2,
+            tension: 0.1,
         },
     ],
     options: {
@@ -52,9 +45,9 @@ function capitalizeFirstLetter(str: string) {
     return str.replace(/_/g, ' ');
 }
 
-function CategoryPieChart(props: any) {
+function CategoryLineChart(props: any) {
     const [user, loading] = useAuthState(auth);
-    const [repData, setRepData] = useState(pieChartData);
+    const [repData, setRepData] = useState(lineChartData);
     const [repDataReady, setRepDataReady] = useState(false);
     let userId:any;
 
@@ -64,9 +57,10 @@ function CategoryPieChart(props: any) {
         }
         userId = user?.uid;
         const expensesRef = ref(db, `users/${userId}/expenses`);
+        // const categoriesRef = ref(db, `users/${userId}/categories`);
         onValue(expensesRef, (snapshot) => {
             let categoryWiseData: any = {};
-            let tempData = pieChartData;
+            let tempData = lineChartData;
             let labels = [];
             let datasets = [];
             const expensesRow = snapshot.val();
@@ -95,7 +89,7 @@ function CategoryPieChart(props: any) {
         });
     }, [loading, props]);
 
-    if (props.data.reportType != "pie-chart") {
+    if (props.data.reportType != "line-chart") {
         return (<></>);
     }
 
@@ -105,10 +99,10 @@ function CategoryPieChart(props: any) {
                 <div className="row">
                     <div className="reports-column">
                         <div className="card">
-                            <div className="pie-div">
-                                {!repDataReady ? (<></>) : (<Pie className="pie-chart" data={repData} redraw />)}
+                            <div className="line-div">
+                                {!repDataReady ? (<></>) : (<Line className="line-chart" data={repData} redraw />)}
                             </div>
-                            <p>Pie Chart: Category Wise Spend</p>
+                            <p>Line Chart: Category Wise Spend</p>
                         </div>
                     </div>
                 </div>
@@ -117,4 +111,4 @@ function CategoryPieChart(props: any) {
     );
 }
 
-export default CategoryPieChart
+export default CategoryLineChart

@@ -26,6 +26,8 @@ input {
 .heading {
     text-align: center;
     font-family: "Trebuchet MS";
+    color: #CBD7E2;
+    font-size: 60px;
 }
 
 select {

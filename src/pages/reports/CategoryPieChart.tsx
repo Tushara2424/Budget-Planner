@@ -108,7 +108,7 @@ function CategoryPieChart(props: any) {
                             <div className="pie-div">
                                 {!repDataReady ? (<></>) : (<Pie className="pie-chart" data={repData} redraw />)}
                             </div>
-                            <p>Pie Chart: Category Wise Spend</p>
+                            <p>Pie Chart: Category Wise Spent</p>
                         </div>
                     </div>
                 </div>

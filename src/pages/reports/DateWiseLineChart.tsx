@@ -116,7 +116,7 @@ function DateLineChart(props: any) {
                             <div className="date-line-div">
                                 {!repDataReady ? (<></>) : (<Line key={Math.random()} className="line-chart" data={repData} redraw />)}
                             </div>
-                            <p>Line Chart: Date Wise Spend</p>
+                            <p>Line Chart: Date Wise Spent</p>
                         </div>
                     </div>
                 </div>

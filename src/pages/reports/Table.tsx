@@ -91,7 +91,6 @@ export default function StickyHeadTable(props: any) {
                     row.push(createData(Number(id), index++, rowData["category"], rowData["description"], rowData["date"], rowData["amount"]));
                 }
             }
-            console.log(row);
             setRowsData(row);
             setRepDataReady(true);
         });

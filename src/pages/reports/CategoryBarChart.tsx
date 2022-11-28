@@ -114,7 +114,7 @@ function CategoryBarChart(props: any) {
                             <div className="bar-div">
                                 {!repDataReady ? (<></>) : (<Bar className="bar-chart" data={repData} redraw />)}
                             </div>
-                            <p>Bar Chart: Category Wise Spend</p>
+                            <p>Bar Chart: Category Wise Spent</p>
                         </div>
                     </div>
                 </div>

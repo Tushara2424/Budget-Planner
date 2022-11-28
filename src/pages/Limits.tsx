@@ -27,10 +27,10 @@ function Limits() {
                 // @ts-ignore
                 currentLimit[category] = amount;
                 set(limitsRef, currentLimit)
-                    .then(() => console.log("data added to db"))
+                    .then(() => alert("Limit added successfully"))
                     .catch(() => console.log("error while adding to db"));
             })
-            .catch(() => console.log("error while reading from db"));
+            .catch(() => alert("Error while adding limit"));
     };
     return (
         <>
@@ -51,7 +51,7 @@ function Limits() {
                 <p>Select Category</p>
                 <select value={category} onChange={event => setCategory(event.target.value)}>
                     <option value="other">Other</option>
-                    <option value="grocery">Food</option>
+                    <option value="grocery">Grocery</option>
                     <option value="housing">Housing</option>
                     <option value="utilities">Utilities</option>
                     <option value="clothing">Clothing</option>

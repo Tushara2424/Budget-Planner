@@ -102,7 +102,7 @@ function CategoryLineChart(props: any) {
                             <div className="line-div">
                                 {!repDataReady ? (<></>) : (<Line className="line-chart" data={repData} redraw />)}
                             </div>
-                            <p>Line Chart: Category Wise Spend</p>
+                            <p>Line Chart: Category Wise Spent</p>
                         </div>
                     </div>
                 </div>

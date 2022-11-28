@@ -10,7 +10,7 @@ import {useAuthState} from "react-firebase-hooks/auth";
 import {auth, db} from "../../Firebase";
 import {useEffect, useState} from "react";
 import {onValue, ref} from "firebase/database";
-import "./Table.css"
+import "./ExpensesTable.css"
 
 interface Column {
     id: 'index' | 'category' | 'description' | 'date' | 'amount';
@@ -66,7 +66,7 @@ function createData(
     return { key: key, index: index, category: category, description: description, date: date, amount: amount };
 }
 
-export default function StickyHeadTable(props: any) {
+export default function ExpensesTable(props: any) {
     const [user, loading] = useAuthState(auth);
     const [rowsData, setRowsData] = useState<Data[]>([]);
     const [repDataReady, setRepDataReady] = useState(false);

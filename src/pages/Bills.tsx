@@ -3,7 +3,7 @@ import {auth, db} from "../Firebase";
 import budgetAppLogo from "../components/budget planner-logos_transparent.png";
 import {signOut} from "firebase/auth";
 import {useAuthState} from "react-firebase-hooks/auth";
-import {ref, get, set} from "firebase/database";
+import {ref, set, push} from "firebase/database";
 
 function Bills() {
     const logout = async () => {
@@ -11,15 +11,22 @@ function Bills() {
     }
     const [user] = useAuthState(auth);
     const [amount, setAmount] = useState('');
-    const [category, setCategory] = useState('other');
+    const [date, setDate] = useState('');
     const [description, setDescription] = useState('');
     const userId = user?.uid;
-    const limitsRef = ref(db, `users/${userId}/limits`);
 
     const handleSubmit = (event: any) => {
         event.preventDefault();
         setAmount('');
-        // todo@pranit
+        const value = {
+            "description": description,
+            "amount": amount,
+            "date": date
+        };
+        const billsRef = push(ref(db, `users/${userId}/bills`));
+        set(billsRef, value)
+            .then(() => alert("Bill added successfully"))
+            .catch(() => alert("Error while adding bill"));
     };
     return (
         <>
@@ -56,6 +63,9 @@ function Bills() {
                     onChange={event => setAmount(event.target.value)}
                     required
                 />
+                <br/>
+                <p>Select bill date</p>
+                <input type="date" name="date_picker" value={date} onChange={event => setDate(event.target.value)} required />
                 <button type="submit">Submit</button>
             </form>
         </>
